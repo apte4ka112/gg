@@ -78,6 +78,10 @@ h1 {
   padding: 0 20px 0 20px;
   text-align: center;
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 @media (prefers-color-scheme: light) {

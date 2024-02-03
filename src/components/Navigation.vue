@@ -84,6 +84,9 @@ onMounted(()=> {
     justify-content: flex-start;
     padding-left: 50px;
     padding-right: 50px;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar { width: 0; }
   }
 
   &__item {

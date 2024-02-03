@@ -46,11 +46,13 @@ const className = computed(() => {
   cursor: pointer;
   width: 400px;
   margin-bottom: 20px;
+
   @media (max-width: 1400px) {
     width: calc(50% - 20px);
   }
   @media (max-width: 768px) {
     width: 100%;
+    margin-bottom: 8px;
   }
   &__tags {
     display: flex;
