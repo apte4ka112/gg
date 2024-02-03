@@ -11,7 +11,7 @@ defineProps({
     }"
   >
     <div class="category__text">
-      {{ item.name }}
+      {{ item.title }}
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import menuIcon from '../assets/icon/menu.vue'
 import siteIcon from '../assets/icon/site.vue'
 import logoSmall from '../assets/icon/logo-small.vue'
@@ -7,50 +7,65 @@ import smiIcon from '../assets/icon/smi.vue'
 import reklamaIcon from '../assets/icon/reklama.vue'
 import newsIcon from '../assets/icon/news.vue'
 const activeTabs = ref(0)
-
+const emit = defineEmits(['setFilter'])
 const navigation = ref([
   {
-    name: 'Все',
+    name:'*',
+    title: 'Все',
+    id: 0,
     icon: menuIcon,
+    category: [
+      { title: 'Лендинги', name:'.lend', id: 2},
+
+    ],
     link: '#'
   },
   {
-    name: 'Сайты',
+    name:'.site',
+    title: 'Сайты',
     icon: siteIcon,
+    category: [
+      { title: 'Корпаративные сайты' , name:'.corparat', id: 2},
+      { title: 'Лендинги' , id: 3,  name:'.lend'}
+    ],
     link: '#'
   },
   {
-    name: 'Бренды',
+    name:'.brand',
+    title: 'Бренды',
     icon: logoSmall,
     link: '#'
   },
   {
-    name: 'СММ',
+    title: 'СММ',
     icon: smiIcon,
     link: '#'
   },
   {
-    name: 'Реклама',
+    title: 'Реклама',
     icon: reklamaIcon,
     link: '#'
   },
   {
-    name: 'Статьи',
+    title: 'Статьи',
     icon: newsIcon,
     link: '#'
   }
 ])
+onMounted(()=> {
+  emit('setFilter', navigation.value[0])
+})
 </script>
 <template>
   <div class="navigation">
-    <div class="navigation__item  " :class="{
+    <div class="navigation__item  "   :class="{
       'active' : activeTabs == index
-    }" v-for="(item,index) in navigation" :key="index" @click="activeTabs = index">
+    }" v-for="(item,index) in navigation" :key="index" @click="activeTabs = index, emit('setFilter', item)">
       <div class="navigation__item-icon">
         <component :is="item.icon" />
       </div>
       <div class="navigation__item-text">
-        {{ item.name }}
+        {{ item.title }}
       </div>
     </div>
   </div>
@@ -62,6 +77,14 @@ const navigation = ref([
   display: flex;
   justify-content: center;
   gap: 34px;
+  @media (max-width: 768px) {
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow: auto;
+    justify-content: flex-start;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 
   &__item {
     user-select: none;

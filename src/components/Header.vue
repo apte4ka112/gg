@@ -1,7 +1,7 @@
 
 <template>
   <header class="header ">
-    <div class="header__logo">
+    <div class="header__logo ">
       <img src="../assets/icon/logo.svg" alt="">
     </div>
     <div class="header__control animate__animated animate__fadeIn">
@@ -21,11 +21,15 @@
   align-items: center;
   position: relative;
   min-height: 64px;
+
   &__control {
     right: 0;
     position: absolute;
     display: flex;
     gap: 12px;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 }
 </style>
